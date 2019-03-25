@@ -11,9 +11,9 @@ public class App
     {
         
 
-    		System.out.println(Backend.getHTML());
+    	System.out.println(Backend.getHTML());
 		JSONObject obj = new JSONObject(Backend.getHTML());
-		String pageName = obj.getString("Copyright");
+		String pageName = obj.getString("copyright");
 		
 		System.out.println(pageName);
         

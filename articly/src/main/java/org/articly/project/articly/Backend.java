@@ -9,7 +9,7 @@ public class Backend {
  
 	   public static String getHTML() throws Exception {
 		   
-		   	  String urlToRead = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=Pxp8OXdQJUtbRA5n3XAN0hCpFhL6qZeb";
+		   	  String urlToRead = "https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=Pxp8OXdQJUtbRA5n3XAN0hCpFhL6qZeb\n";
 		   	  StringBuilder result = new StringBuilder();
 		      URL url = new URL(urlToRead);
 		      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
