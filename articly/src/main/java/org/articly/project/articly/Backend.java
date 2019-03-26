@@ -5,6 +5,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.MessageFormat;
 
 public class Backend {
@@ -39,7 +44,31 @@ public class Backend {
 		      return result.toString();
 	   }
 	   
+	   public static void displayResults() throws JSONException, Exception {
+		   
+		// create JSON object with Backend functions
+			JSONObject obj = new JSONObject(Backend.getHTML());
+			//String pageName = obj.getString("results");
+			
+			// create JSON array to hold the results
+	        JSONArray arr = obj.getJSONArray("results");
+	        
+	        // within each "result" we extract the title and print it to the screen
+	        for (int i = 0; i < arr.length(); i++) {
+	        	String url = arr.getJSONObject(i).getString("url");
+	            String title = arr.getJSONObject(i).getString("title");
+	            System.out.println(i+1 + ": title: " + title + "\n");
+	            System.out.println("URL: " + url + "\n");
+			
+	        }
+		   
+	   }
 	   
+	   public static void runBackend() throws Exception {
+		   
+		   Backend.getHTML();
+		   Backend.displayResults();
+	   }
 	   
 	   
 }
