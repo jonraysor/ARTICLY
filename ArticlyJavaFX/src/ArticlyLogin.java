@@ -14,7 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.Group;
 import javafx.stage.*;
 
-import java.io.File;
 
 
 public class ArticlyLogin extends Application implements EventHandler<ActionEvent> {
@@ -30,7 +29,6 @@ public class ArticlyLogin extends Application implements EventHandler<ActionEven
     @Override
     public void start(Stage primaryStage) {
 
-        BorderPane borderpane =  new BorderPane();
         GridPane pane = new GridPane();
         pane.setAlignment(Pos.CENTER_LEFT);
         pane.setHgap(10);
