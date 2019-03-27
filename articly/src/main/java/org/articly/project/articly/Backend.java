@@ -15,14 +15,6 @@ import java.text.MessageFormat;
 public class Backend {
 	
 	
-//		public static int getDays() {
-//			
-//			Scanner reader = new Scanner(System.in);
-//			System.out.println("How Many days would you like to see (1,7,30)");
-//			int numDays = reader.nextInt();
-//			
-//			return numDays;
-//		}
  
 	   public static String getHTML(int numDays) throws Exception {
 		   
