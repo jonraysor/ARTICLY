@@ -1,3 +1,5 @@
+package org.articly.project.articly;
+
 import javafx.application.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -82,7 +84,6 @@ public class ArticlyLogin extends Application implements EventHandler<ActionEven
 
     }
 
-    @Override
     public void handle(ActionEvent event) {
 
         if(event.getSource() == btExit) {

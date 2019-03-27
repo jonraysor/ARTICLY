@@ -1,3 +1,5 @@
+package org.articly.project.articly;
+
 import javafx.application.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -72,15 +74,21 @@ public class ArticlyInterface extends Application implements EventHandler<Action
         primaryStage.show();
     }
 
-    @Override
     public void handle(ActionEvent event) {
 
         if(event.getSource() == btSubmit) {
+        	try {
+        		int numDays = Integer.parseInt(tfNumberOfDays.getText());				
+        		Backend.runBackend(numDays);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
 
     }
 
-    public static void main(String[] args) {
+    public static void run(String[] args) {
         launch(args);
     }
 

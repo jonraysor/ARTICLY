@@ -15,20 +15,18 @@ import java.text.MessageFormat;
 public class Backend {
 	
 	
-		public static int getDays() {
-			
-			Scanner reader = new Scanner(System.in);
-			System.out.println("How Many days would you like to see (1,7,30)");
-			int numDays = reader.nextInt();
-			
-			reader.close();
-			
-			return numDays;
-		}
+//		public static int getDays() {
+//			
+//			Scanner reader = new Scanner(System.in);
+//			System.out.println("How Many days would you like to see (1,7,30)");
+//			int numDays = reader.nextInt();
+//			
+//			return numDays;
+//		}
  
-	   public static String getHTML() throws Exception {
+	   public static String getHTML(int numDays) throws Exception {
 		   
-		   	  int numDays = Backend.getDays();
+		   	  //int numDays = Backend.getDays();
 		   
 		   	  String urlToRead = MessageFormat.format("https://api.nytimes.com/svc/mostpopular/v2/viewed/{0}.json?api-key=Pxp8OXdQJUtbRA5n3XAN0hCpFhL6qZeb\n", numDays); 
 		   	  StringBuilder result = new StringBuilder();
@@ -44,10 +42,10 @@ public class Backend {
 		      return result.toString();
 	   }
 	   
-	   public static void displayResults() throws JSONException, Exception {
+	   public static void displayResults(int numDays) throws JSONException, Exception {
 		   
 		// create JSON object with Backend functions
-			JSONObject obj = new JSONObject(Backend.getHTML());
+			JSONObject obj = new JSONObject(Backend.getHTML(numDays));
 			//String pageName = obj.getString("results");
 			
 			// create JSON array to hold the results
@@ -64,10 +62,10 @@ public class Backend {
 		   
 	   }
 	   
-	   public static void runBackend() throws Exception {
+	   public static void runBackend(int numDays) throws Exception {
 		   
-		   Backend.getHTML();
-		   Backend.displayResults();
+		   //Backend.getHTML(numDays);
+		   Backend.displayResults(numDays);
 	   }
 	   
 	   
