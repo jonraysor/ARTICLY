@@ -3,7 +3,9 @@ package org.articly.project.articly;
 import javafx.application.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -16,13 +18,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.Group;
 import javafx.stage.*;
 
+import javax.swing.*;
 
 
 public class ArticlyInterface extends Application implements EventHandler<ActionEvent> {
 
     Text welcome;
-    TextField tfNumberOfDays;
-    Button btSubmit;
+    TextArea articles;
+    Button btDaily;
+    Button btWeekly;
+    Button btMonthly;
     Image image;
     ImageView imageview = new ImageView();
 
@@ -34,18 +39,19 @@ public class ArticlyInterface extends Application implements EventHandler<Action
         pane.setVgap(8);
 
         HBox hbox = new HBox();
-        hbox.setSpacing(10.0);
+        hbox.setSpacing(30.0);
 
         Group root = new Group();
         Scene scene = new Scene(root, 850, 700, Color.LIGHTGREEN);
 
-        welcome = new Text();
-        tfNumberOfDays = new TextField();
-        tfNumberOfDays.setMaxSize(50, Region.USE_PREF_SIZE);
-        btSubmit = new Button("Submit ");
-        btSubmit.setStyle("-fx-font-size: 8pt;");
+        btDaily = new Button("Daily ");
+        btDaily.setStyle("-fx-font-size: 12pt;");
+        btWeekly = new Button("Weekly");
+        btWeekly.setStyle("-fx-font-size: 12pt;");
+        btMonthly = new Button("Monthly");
+        btMonthly.setStyle("-fx-font-size: 12pt;");
 
-        image = new Image(ArticlyLogin.class.getResourceAsStream("nytimes.jpg"));
+        image = new Image(ArticlyInterface.class.getResourceAsStream("nytimes.jpg"));
         imageview.setFitHeight(150);
         imageview.setFitWidth(825);
         imageview.setImage(image);
@@ -54,36 +60,66 @@ public class ArticlyInterface extends Application implements EventHandler<Action
         welcome.setFont(Font.font("Times New Roman", FontWeight.BOLD, 20));
         welcome.setFill(Color.CORNFLOWERBLUE);
 
-        Label numberOfDays = new Label("Please enter a number 1, 7, or 30 to view articles from previous day, week, or month");
-        numberOfDays.setTextFill(Color.CORNFLOWERBLUE);
-        numberOfDays.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
+        articles = new TextArea();
+        articles.setMinSize(600.0, 400.0);
 
-        hbox.getChildren().addAll(btSubmit);
+        hbox.getChildren().addAll(btDaily, btWeekly, btMonthly);
+        hbox.setAlignment(Pos.CENTER);
         pane.setAlignment(Pos.BOTTOM_CENTER);
         pane.add(imageview, 1, 0);
         pane.add(welcome, 1, 1);
-        pane.add(numberOfDays, 1, 5);
-        pane.add(tfNumberOfDays, 1, 6);
+        pane.add(articles, 1, 2);
         pane.add(hbox, 1, 8, 2, 1);
 
-        btSubmit.setOnAction(this);
 
-        root.getChildren().add(pane);
+        btDaily.setOnAction(this);
+        btWeekly.setOnAction(this);
+        btMonthly.setOnAction(this);
+
+        ScrollPane sB = new ScrollPane(articles);
+
+
+        root.getChildren().addAll(pane);
         primaryStage.setTitle("ARTICLY");
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
 
     public void handle(ActionEvent event) {
 
-        if(event.getSource() == btSubmit) {
+        if(event.getSource() == btDaily) {
         	try {
-        		int numDays = Integer.parseInt(tfNumberOfDays.getText());				
-        		Backend.runBackend(numDays);
+        		int numDays = 1;
+                String output = Backend.displayResults(numDays);
+                articles.setText(output);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+        }
+
+        if(event.getSource() == btWeekly) {
+            try {
+                int numDays = 7;
+                String output = Backend.displayResults(numDays);
+                articles.setText(output);
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        if(event.getSource() == btMonthly) {
+            try {
+                int numDays = 30;
+                String output = Backend.displayResults(numDays);
+                articles.setText(output);
+
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
 
     }
