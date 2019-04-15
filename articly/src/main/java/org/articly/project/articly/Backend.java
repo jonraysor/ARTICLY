@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.MessageFormat;
+import java.util.TreeMap;
 
 public class Backend {
  
@@ -32,7 +33,7 @@ public class Backend {
 		      return result.toString();
 	   }
 	   
-	   public static String displayResults(int numDays) throws JSONException, Exception {
+	   public static String [] getTitles(int numDays) throws JSONException, Exception {
 		   
 		// create JSON object with Backend functions
 			JSONObject obj = new JSONObject(Backend.getHTML(numDays));
@@ -41,23 +42,44 @@ public class Backend {
 			// create JSON array to hold the results
 	        JSONArray arr = obj.getJSONArray("results");
 
-	        StringBuilder sB = new StringBuilder();
+	        String [] titles = new String[30];
 	        
 	        // within each "result" we extract the title and print it to the screen
 	        for (int i = 0; i < arr.length(); i++) {
-	        	String url = arr.getJSONObject(i).getString("url");
-	            String title = arr.getJSONObject(i).getString("title");
-	            String dataTitle = (i + 1 + ": title: " + title + "\n");
+				String url = arr.getJSONObject(i).getString("url");
+				String title = arr.getJSONObject(i).getString("title");
+				String dataTitle = (i + 1 + ": title: " + title + "\n");
 				String dataURL = ("URL: " + url + "\n");
-	            sB.append(dataTitle);
-	            sB.append(dataURL);
-	            sB.append("\n");
-	        }
+				titles[i] =  dataTitle;
+			}
 
-	        String output = sB.toString();
-	        return output;
+	        return titles;
 
 	   }
+
+	public static String [] getURL(int numDays) throws JSONException, Exception {
+
+		// create JSON object with Backend functions
+		JSONObject obj = new JSONObject(Backend.getHTML(numDays));
+		//String pageName = obj.getString("results");
+
+		// create JSON array to hold the results
+		JSONArray arr = obj.getJSONArray("results");
+
+		String [] urls = new String[30];
+
+		// within each "result" we extract the title and print it to the screen
+		for (int i = 0; i < arr.length(); i++) {
+			String url = arr.getJSONObject(i).getString("url");
+			String title = arr.getJSONObject(i).getString("title");
+			String dataTitle = (i + 1 + ": title: " + title + "\n");
+			String dataURL = ("URL: " + url + "\n");
+			urls[i] =  url;
+		}
+
+		return urls;
+
+	}
 
 	   
 }
