@@ -3,9 +3,7 @@ package org.articly.project.articly;
 import javafx.application.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -17,11 +15,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.Group;
-import javafx.stage.*;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javax.swing.*;
-
+import javafx.stage.*;
 
 public class ArticlyInterface extends Application implements EventHandler<ActionEvent> {
 
@@ -33,6 +29,8 @@ public class ArticlyInterface extends Application implements EventHandler<Action
     Image image;
     Hyperlink hyperlink;
     ImageView imageview = new ImageView();
+    WebView wB = new WebView();
+    WebEngine wE = wB.getEngine();
 
     @Override
     public void start(Stage primaryStage) {
@@ -75,6 +73,7 @@ public class ArticlyInterface extends Application implements EventHandler<Action
         pane.add(welcome, 1, 1);
         pane.add(sp, 1, 2);
         pane.add(hbox, 1, 8, 2, 1);
+        pane.add(wB, 2,2);
 
         btDaily.setOnAction(this);
         btWeekly.setOnAction(this);
@@ -102,6 +101,12 @@ public class ArticlyInterface extends Application implements EventHandler<Action
                     hyperlink.setFont(Font.font("Times New Roman", FontWeight.BOLD, 14));
                     articles.getChildren().add(text);
                     articles.getChildren().add(hyperlink);
+                    hyperlink.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            wE.load(hyperlink.toString());
+                        }
+                    });
                 }
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -122,6 +127,7 @@ public class ArticlyInterface extends Application implements EventHandler<Action
                     hyperlink.setFont(Font.font("Times New Roman", FontWeight.BOLD, 14));
                     articles.getChildren().add(text);
                     articles.getChildren().add(hyperlink);
+
                 }
             } catch (Exception e) {
                 // TODO Auto-generated catch block
@@ -142,6 +148,7 @@ public class ArticlyInterface extends Application implements EventHandler<Action
                     hyperlink.setFont(Font.font("Times New Roman", FontWeight.BOLD, 14));
                     articles.getChildren().add(text);
                     articles.getChildren().add(hyperlink);
+                    wE.load(hyperlink.toString());
                 }
             }
              catch (Exception e) {

@@ -46,10 +46,8 @@ public class Backend {
 	        
 	        // within each "result" we extract the title and print it to the screen
 	        for (int i = 0; i < arr.length(); i++) {
-				String url = arr.getJSONObject(i).getString("url");
 				String title = arr.getJSONObject(i).getString("title");
 				String dataTitle = (i + 1 + ": title: " + title + "\n");
-				String dataURL = ("URL: " + url + "\n");
 				titles[i] =  dataTitle;
 			}
 
@@ -71,9 +69,6 @@ public class Backend {
 		// within each "result" we extract the title and print it to the screen
 		for (int i = 0; i < arr.length(); i++) {
 			String url = arr.getJSONObject(i).getString("url");
-			String title = arr.getJSONObject(i).getString("title");
-			String dataTitle = (i + 1 + ": title: " + title + "\n");
-			String dataURL = ("URL: " + url + "\n");
 			urls[i] =  url;
 		}
 
