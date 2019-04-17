@@ -73,6 +73,7 @@ public class ArticlyInterface extends Application implements EventHandler<Action
 
         ScrollPane sp = new ScrollPane(articles);
         sp.setPrefSize(150.0, 500.0);
+        sp.setStyle("-fx-background-color: transparent");
 
         hbox.getChildren().addAll(btDaily, btWeekly, btMonthly);
         hbox.setAlignment(Pos.CENTER);
