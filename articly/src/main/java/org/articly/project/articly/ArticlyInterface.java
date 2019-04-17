@@ -27,6 +27,12 @@ import java.net.URISyntaxException;
 
 public class ArticlyInterface extends Application implements EventHandler<ActionEvent> {
 
+
+
+    private int numDays;
+    private String[] titles;
+    private String[] urls;
+
     Text welcome;
     TextFlow articles;
     Button btDaily;
@@ -107,27 +113,26 @@ public class ArticlyInterface extends Application implements EventHandler<Action
                 }
     }
 
+    private void populate(){
+        try {
 
-    public static boolean openWebpage(URI uri) {
-        Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-        if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
-            try {
-                desktop.browse(uri);
-                return true;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+                titles = Backend.getTitles(numDays);
+                urls = Backend.getURL(numDays);
+
         }
-        return false;
+        catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
+
 
     public void handle(ActionEvent event) {
 
         if (event.getSource() == btDaily) {
             try {
-                int numDays = 1;
-                String[] titles = Backend.getTitles(numDays);
-                String[] urls = Backend.getURL(numDays);
+                numDays = 1;
+                populate();
                 articles.getChildren().clear();
                 for (int i = 0; i < 20; i++) {
 
@@ -161,13 +166,14 @@ public class ArticlyInterface extends Application implements EventHandler<Action
 
         if (event.getSource() == btWeekly) {
             try {
-                int numDays = 7;
-                String[] titles = Backend.getTitles(numDays);
-                String[] urls = Backend.getURL(numDays);
+                numDays = 7;
+                populate();
+
                 articles.getChildren().clear();
                 for (int i = 0; i < urls.length; i++) {
                     Text text = new Text(titles[i]);
                     text.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
+
                     hyperlink = new Hyperlink(urls[i]);
                     final String link = hyperlink.toString();
                     hyperlink.setFont(Font.font("Times New Roman", FontWeight.BOLD, 14));
@@ -191,9 +197,8 @@ public class ArticlyInterface extends Application implements EventHandler<Action
 
         if (event.getSource() == btMonthly) {
             try {
-                int numDays = 30;
-                String[] titles = Backend.getTitles(numDays);
-                String[] urls = Backend.getURL(numDays);
+                numDays = 30;
+                populate();
                 articles.getChildren().clear();
                 for (int i = 0; i < urls.length; i++) {
                     Text text = new Text(titles[i]);
