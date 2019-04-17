@@ -170,7 +170,7 @@ public class ArticlyInterface extends Application implements EventHandler<Action
                 populate();
 
                 articles.getChildren().clear();
-                for (int i = 0; i < urls.length; i++) {
+                for (int i = 0; i < 20; i++) {
                     Text text = new Text(titles[i]);
                     text.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
 
@@ -200,7 +200,7 @@ public class ArticlyInterface extends Application implements EventHandler<Action
                 numDays = 30;
                 populate();
                 articles.getChildren().clear();
-                for (int i = 0; i < urls.length; i++) {
+                for (int i = 0; i < 20; i++) {
                     Text text = new Text(titles[i]);
                     text.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
                     hyperlink = new Hyperlink(urls[i]);

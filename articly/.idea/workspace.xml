@@ -39,8 +39,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/articly/project/articly/ArticlyInterface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="114" lean-forward="true" selection-start-line="114" selection-end-line="114" />
+            <state relative-caret-position="2685">
+              <caret line="202" column="35" lean-forward="true" selection-start-line="202" selection-start-column="35" selection-end-line="202" selection-end-column="35" />
               <folding>
                 <element signature="e#5008#5228#0" expanded="true" />
                 <element signature="e#5227#5228#0" expanded="true" />
@@ -48,7 +48,7 @@
                 <element signature="e#6407#6408#0" expanded="true" />
                 <element signature="e#7369#7589#0" expanded="true" />
                 <element signature="e#7588#7589#0" expanded="true" />
-                <element signature="e#7356#7357#0" expanded="true" />
+                <element signature="e#7314#7315#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -127,7 +127,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555474643793" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555475000084" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -236,8 +236,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/articly/project/articly/ArticlyInterface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="114" lean-forward="true" selection-start-line="114" selection-end-line="114" />
+        <state relative-caret-position="2685">
+          <caret line="202" column="35" lean-forward="true" selection-start-line="202" selection-start-column="35" selection-end-line="202" selection-end-column="35" />
           <folding>
             <element signature="e#5008#5228#0" expanded="true" />
             <element signature="e#5227#5228#0" expanded="true" />
@@ -245,7 +245,7 @@
             <element signature="e#6407#6408#0" expanded="true" />
             <element signature="e#7369#7589#0" expanded="true" />
             <element signature="e#7588#7589#0" expanded="true" />
-            <element signature="e#7356#7357#0" expanded="true" />
+            <element signature="e#7314#7315#0" expanded="true" />
           </folding>
         </state>
       </provider>
