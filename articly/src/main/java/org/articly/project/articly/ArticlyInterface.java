@@ -15,8 +15,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.Group;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 import javafx.stage.*;
 import java.net.URL;
 import java.net.URI;
@@ -26,7 +24,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class ArticlyInterface extends Application implements EventHandler<ActionEvent> {
-
 
 
     private int numDays;
@@ -41,8 +38,6 @@ public class ArticlyInterface extends Application implements EventHandler<Action
     Image image;
     Hyperlink hyperlink;
     ImageView imageview = new ImageView();
-    WebView wB = new WebView();
-    WebEngine wE = wB.getEngine();
 
     @Override
     public void start(Stage primaryStage) {
@@ -64,10 +59,11 @@ public class ArticlyInterface extends Application implements EventHandler<Action
         btMonthly = new Button("Monthly");
         btMonthly.setStyle("-fx-font-size: 12pt;");
 
-        //image = new Image(ArticlyInterface.class.getResourceAsStream("nytimes.jpg"));
+        image = new Image(ArticlyInterface.class.getResourceAsStream("times.jpg"));
         imageview.setFitHeight(150);
         imageview.setFitWidth(825);
         imageview.setImage(image);
+
         welcome = new Text("Welcome to Articly. Enjoy browsing our vast collection of articles from the New York Times");
         welcome.setFont(Font.font("Times New Roman", FontWeight.BOLD, 20));
         welcome.setFill(Color.CORNFLOWERBLUE);
@@ -85,7 +81,6 @@ public class ArticlyInterface extends Application implements EventHandler<Action
         pane.add(welcome, 1, 1);
         pane.add(sp, 1, 2);
         pane.add(hbox, 1, 8, 2, 1);
-        pane.add(wB, 2, 2);
 
         btDaily.setOnAction(this);
         btWeekly.setOnAction(this);
@@ -144,7 +139,6 @@ public class ArticlyInterface extends Application implements EventHandler<Action
                     hyperlink.setFont(Font.font("Times New Roman", FontWeight.BOLD, 14));
                     articles.getChildren().add(text);
                     articles.getChildren().add(hyperlink);
-
 
                     hyperlink.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -208,7 +202,6 @@ public class ArticlyInterface extends Application implements EventHandler<Action
                     hyperlink.setFont(Font.font("Times New Roman", FontWeight.BOLD, 14));
                     articles.getChildren().add(text);
                     articles.getChildren().add(hyperlink);
-                    wE.load(hyperlink.toString());
 
                     hyperlink.setOnAction(new EventHandler<ActionEvent>() {
 
