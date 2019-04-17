@@ -92,6 +92,22 @@ public class ArticlyInterface extends Application implements EventHandler<Action
 
     }
 
+    public void openLink(String link){
+
+                try{
+                    System.out.println(hyperlink.toString());
+                    Desktop desktop = java.awt.Desktop.getDesktop();
+                    URI oURL = new URI(link.substring(link.indexOf("https"), link.length() - 1));
+                    desktop.browse(oURL);
+                }
+
+                catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+    }
+
+
     public static boolean openWebpage(URI uri) {
         Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
         if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
@@ -120,7 +136,6 @@ public class ArticlyInterface extends Application implements EventHandler<Action
 
                     hyperlink = new Hyperlink(urls[i]);
                     final String link = hyperlink.toString();
-                    System.out.println(link.substring(link.indexOf("https"), link.length() - 1));
                     hyperlink.setFont(Font.font("Times New Roman", FontWeight.BOLD, 14));
                     articles.getChildren().add(text);
                     articles.getChildren().add(hyperlink);
@@ -130,18 +145,7 @@ public class ArticlyInterface extends Application implements EventHandler<Action
 
                         @Override
                         public void handle(ActionEvent t) {
-
-                            try{
-                                System.out.println(hyperlink.toString());
-                                Desktop desktop = java.awt.Desktop.getDesktop();
-                                URI oURL = new URI(link.substring(link.indexOf("https"), link.length() - 1));
-                                desktop.browse(oURL);
-                            }
-
-                            catch (Exception e) {
-                                // TODO Auto-generated catch block
-                                e.printStackTrace();
-                            }
+                            openLink(link);
                         }
                     });
                 }
@@ -165,9 +169,18 @@ public class ArticlyInterface extends Application implements EventHandler<Action
                     Text text = new Text(titles[i]);
                     text.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
                     hyperlink = new Hyperlink(urls[i]);
+                    final String link = hyperlink.toString();
                     hyperlink.setFont(Font.font("Times New Roman", FontWeight.BOLD, 14));
                     articles.getChildren().add(text);
                     articles.getChildren().add(hyperlink);
+
+                    hyperlink.setOnAction(new EventHandler<ActionEvent>() {
+
+                        @Override
+                        public void handle(ActionEvent t) {
+                            openLink(link);
+                        }
+                    });
 
                 }
             } catch (Exception e) {
@@ -186,10 +199,19 @@ public class ArticlyInterface extends Application implements EventHandler<Action
                     Text text = new Text(titles[i]);
                     text.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
                     hyperlink = new Hyperlink(urls[i]);
+                    final String link = hyperlink.toString();
                     hyperlink.setFont(Font.font("Times New Roman", FontWeight.BOLD, 14));
                     articles.getChildren().add(text);
                     articles.getChildren().add(hyperlink);
                     wE.load(hyperlink.toString());
+
+                    hyperlink.setOnAction(new EventHandler<ActionEvent>() {
+
+                        @Override
+                        public void handle(ActionEvent t) {
+                            openLink(link);
+                        }
+                    });
                 }
             } catch (Exception e) {
                 // TODO Auto-generated catch block
