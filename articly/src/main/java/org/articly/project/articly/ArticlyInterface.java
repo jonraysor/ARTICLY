@@ -18,6 +18,12 @@ import javafx.scene.Group;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.*;
+import java.net.URL;
+import java.net.URI;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class ArticlyInterface extends Application implements EventHandler<ActionEvent> {
 
@@ -52,7 +58,7 @@ public class ArticlyInterface extends Application implements EventHandler<Action
         btMonthly = new Button("Monthly");
         btMonthly.setStyle("-fx-font-size: 12pt;");
 
-        image = new Image(ArticlyInterface.class.getResourceAsStream("nytimes.jpg"));
+        //image = new Image(ArticlyInterface.class.getResourceAsStream("nytimes.jpg"));
         imageview.setFitHeight(150);
         imageview.setFitWidth(825);
         imageview.setImage(image);
@@ -73,7 +79,7 @@ public class ArticlyInterface extends Application implements EventHandler<Action
         pane.add(welcome, 1, 1);
         pane.add(sp, 1, 2);
         pane.add(hbox, 1, 8, 2, 1);
-        pane.add(wB, 2,2);
+        pane.add(wB, 2, 2);
 
         btDaily.setOnAction(this);
         btWeekly.setOnAction(this);
@@ -86,41 +92,76 @@ public class ArticlyInterface extends Application implements EventHandler<Action
 
     }
 
+    public static boolean openWebpage(URI uri) {
+        Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+        if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+            try {
+                desktop.browse(uri);
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
     public void handle(ActionEvent event) {
 
-        if(event.getSource() == btDaily) {
-        	try {
-        		int numDays = 1;
-                String [] titles = Backend.getTitles(numDays);
-                String [] urls = Backend.getURL(numDays);
+        if (event.getSource() == btDaily) {
+            try {
+                int numDays = 1;
+                String[] titles = Backend.getTitles(numDays);
+                String[] urls = Backend.getURL(numDays);
                 articles.getChildren().clear();
-                for(int i = 0; i < urls.length; i++) {
+                for (int i = 0; i < 20; i++) {
+
                     Text text = new Text(titles[i]);
                     text.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
+
                     hyperlink = new Hyperlink(urls[i]);
+                    final String link = hyperlink.toString();
+                    System.out.println(link.substring(link.indexOf("https"), link.length() - 1));
                     hyperlink.setFont(Font.font("Times New Roman", FontWeight.BOLD, 14));
                     articles.getChildren().add(text);
                     articles.getChildren().add(hyperlink);
+
+
                     hyperlink.setOnAction(new EventHandler<ActionEvent>() {
+
                         @Override
-                        public void handle(ActionEvent event) {
-                            wE.load(hyperlink.toString());
+                        public void handle(ActionEvent t) {
+
+                            try{
+                                System.out.println(hyperlink.toString());
+                                Desktop desktop = java.awt.Desktop.getDesktop();
+                                URI oURL = new URI(link.substring(link.indexOf("https"), link.length() - 1));
+                                desktop.browse(oURL);
+                            }
+
+                            catch (Exception e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            }
                         }
                     });
                 }
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+            }
+            catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
 
-        if(event.getSource() == btWeekly) {
+
+
+
+        if (event.getSource() == btWeekly) {
             try {
                 int numDays = 7;
-                String [] titles = Backend.getTitles(numDays);
-                String [] urls = Backend.getURL(numDays);
+                String[] titles = Backend.getTitles(numDays);
+                String[] urls = Backend.getURL(numDays);
                 articles.getChildren().clear();
-                for(int i = 0; i < urls.length; i++) {
+                for (int i = 0; i < urls.length; i++) {
                     Text text = new Text(titles[i]);
                     text.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
                     hyperlink = new Hyperlink(urls[i]);
@@ -135,7 +176,7 @@ public class ArticlyInterface extends Application implements EventHandler<Action
             }
         }
 
-        if(event.getSource() == btMonthly) {
+        if (event.getSource() == btMonthly) {
             try {
                 int numDays = 30;
                 String[] titles = Backend.getTitles(numDays);
@@ -150,8 +191,7 @@ public class ArticlyInterface extends Application implements EventHandler<Action
                     articles.getChildren().add(hyperlink);
                     wE.load(hyperlink.toString());
                 }
-            }
-             catch (Exception e) {
+            } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }

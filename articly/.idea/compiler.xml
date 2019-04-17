@@ -9,8 +9,5 @@
         <module name="articly" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="articly" target="6" />
-    </bytecodeTargetLevel>
   </component>
 </project>
