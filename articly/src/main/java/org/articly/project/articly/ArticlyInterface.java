@@ -59,7 +59,7 @@ public class ArticlyInterface extends Application implements EventHandler<Action
         btMonthly = new Button("Monthly");
         btMonthly.setStyle("-fx-font-size: 12pt;");
 
-        image = new Image(ArticlyInterface.class.getResourceAsStream("times.jpg"));
+        image = new Image(ArticlyInterface.class.getResourceAsStream("./times.jpg"));
         imageview.setFitHeight(150);
         imageview.setFitWidth(825);
         imageview.setImage(image);
@@ -143,7 +143,6 @@ public class ArticlyInterface extends Application implements EventHandler<Action
 
                     hyperlink.setOnAction(new EventHandler<ActionEvent>() {
 
-                        @Override
                         public void handle(ActionEvent t) {
                             openLink(link);
                         }
@@ -177,7 +176,6 @@ public class ArticlyInterface extends Application implements EventHandler<Action
 
                     hyperlink.setOnAction(new EventHandler<ActionEvent>() {
 
-                        @Override
                         public void handle(ActionEvent t) {
                             openLink(link);
                         }
@@ -206,7 +204,6 @@ public class ArticlyInterface extends Application implements EventHandler<Action
 
                     hyperlink.setOnAction(new EventHandler<ActionEvent>() {
 
-                        @Override
                         public void handle(ActionEvent t) {
                             openLink(link);
                         }
