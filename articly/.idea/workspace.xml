@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a8903ec-c9b7-453e-8080-9e613a330c72" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/resources/times.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/articly/project/articly/ArticlyInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/articly/project/articly/ArticlyInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/articly/project/articly/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/articly/project/articly/App.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/articly/project/articly/ArticlyInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/articly/project/articly/ArticlyInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/articly/project/articly/Backend.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/articly/project/articly/Backend.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/junit/framework/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/junit/framework/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/org/articly/project/articly/AppTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/org/articly/project/articly/AppTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,7 +14,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/articly$App.ic" NAME="App Coverage Results" MODIFIED="1555472175145" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/articly$App.ic" NAME="App Coverage Results" MODIFIED="1555508928873" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.articly.project.articly.*</FILTER>
     </SUITE>
   </component>
@@ -49,16 +44,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/articly/project/articly/ArticlyInterface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3060">
-              <caret line="204" column="24" selection-start-line="204" selection-start-column="24" selection-end-line="204" selection-end-column="24" />
+            <state relative-caret-position="514">
+              <caret line="70" column="34" lean-forward="true" selection-start-line="70" selection-start-column="34" selection-end-line="70" selection-end-column="34" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="e#4394#4614#0" expanded="true" />
                 <element signature="e#4613#4614#0" expanded="true" />
                 <element signature="e#5518#5738#0" expanded="true" />
                 <element signature="e#5737#5738#0" expanded="true" />
+                <element signature="e#7369#7589#0" expanded="true" />
                 <element signature="e#7588#7589#0" expanded="true" />
-                <element signature="e#7019#7020#0" expanded="true" />
+                <element signature="e#6988#6989#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -130,63 +125,6 @@
               <item name="articly" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
-            <path>
-              <item name="articly" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="articly" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="articly" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="articly" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="articly" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="articly" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="org" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="articly" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="articly" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="org" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="articly" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="articly" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="articly" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="org" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="articly" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="project" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="articly" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="articly" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="org" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="articly" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="project" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="articly" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="articly" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="articly" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="resources" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -248,7 +186,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555506712771" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555508927887" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/target/classes/org/articly/project/articly" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
@@ -331,7 +269,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24964234" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16809729" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -340,7 +278,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32627645" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3313253" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.11686747" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -401,16 +339,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/articly/project/articly/ArticlyInterface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3060">
-          <caret line="204" column="24" selection-start-line="204" selection-start-column="24" selection-end-line="204" selection-end-column="24" />
+        <state relative-caret-position="514">
+          <caret line="70" column="34" lean-forward="true" selection-start-line="70" selection-start-column="34" selection-end-line="70" selection-end-column="34" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#4394#4614#0" expanded="true" />
             <element signature="e#4613#4614#0" expanded="true" />
             <element signature="e#5518#5738#0" expanded="true" />
             <element signature="e#5737#5738#0" expanded="true" />
+            <element signature="e#7369#7589#0" expanded="true" />
             <element signature="e#7588#7589#0" expanded="true" />
-            <element signature="e#7019#7020#0" expanded="true" />
+            <element signature="e#6988#6989#0" expanded="true" />
           </folding>
         </state>
       </provider>

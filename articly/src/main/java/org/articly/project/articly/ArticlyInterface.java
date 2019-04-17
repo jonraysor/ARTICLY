@@ -50,7 +50,7 @@ public class ArticlyInterface extends Application implements EventHandler<Action
         hbox.setSpacing(20.0);
 
         Group root = new Group();
-        Scene scene = new Scene(root, 850, 800, Color.LIGHTGREEN);
+        Scene scene = new Scene(root, 850, 800, Color.SLATEGRAY);
 
         btDaily = new Button("Daily ");
         btDaily.setStyle("-fx-font-size: 12pt;");
@@ -66,7 +66,7 @@ public class ArticlyInterface extends Application implements EventHandler<Action
 
         welcome = new Text("Welcome to Articly. Enjoy browsing our vast collection of articles from the New York Times");
         welcome.setFont(Font.font("Times New Roman", FontWeight.BOLD, 20));
-        welcome.setFill(Color.CORNFLOWERBLUE);
+        welcome.setFill(Color.DARKBLUE);
 
         articles = new TextFlow();
         articles.setMaxWidth(300.0);
