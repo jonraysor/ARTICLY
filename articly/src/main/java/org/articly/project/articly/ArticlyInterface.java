@@ -97,7 +97,6 @@ public class ArticlyInterface extends Application implements EventHandler<Action
     public void openLink(String link){
 
                 try{
-                    System.out.println(hyperlink.toString());
                     Desktop desktop = java.awt.Desktop.getDesktop();
                     URI oURL = new URI(link.substring(link.indexOf("https"), link.length() - 1));
                     desktop.browse(oURL);
@@ -122,6 +121,29 @@ public class ArticlyInterface extends Application implements EventHandler<Action
         }
     }
 
+    private void putChildren(){
+
+        for (int i = 0; i < 20; i++) {
+
+            Text text = new Text(titles[i]);
+            text.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
+
+            hyperlink = new Hyperlink(urls[i]);
+            final String link = hyperlink.toString();
+            hyperlink.setFont(Font.font("Times New Roman", FontWeight.BOLD, 14));
+            articles.getChildren().add(text);
+            articles.getChildren().add(hyperlink);
+
+            hyperlink.setOnAction(new EventHandler<ActionEvent>() {
+
+                public void handle(ActionEvent t) {
+                    openLink(link);
+                }
+            });
+        }
+
+    }
+
 
     public void handle(ActionEvent event) {
 
@@ -130,24 +152,8 @@ public class ArticlyInterface extends Application implements EventHandler<Action
                 numDays = 1;
                 populate();
                 articles.getChildren().clear();
-                for (int i = 0; i < 20; i++) {
 
-                    Text text = new Text(titles[i]);
-                    text.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
-
-                    hyperlink = new Hyperlink(urls[i]);
-                    final String link = hyperlink.toString();
-                    hyperlink.setFont(Font.font("Times New Roman", FontWeight.BOLD, 14));
-                    articles.getChildren().add(text);
-                    articles.getChildren().add(hyperlink);
-
-                    hyperlink.setOnAction(new EventHandler<ActionEvent>() {
-
-                        public void handle(ActionEvent t) {
-                            openLink(link);
-                        }
-                    });
-                }
+                putChildren();
             }
             catch (Exception e) {
                 // TODO Auto-generated catch block
@@ -164,24 +170,8 @@ public class ArticlyInterface extends Application implements EventHandler<Action
                 populate();
 
                 articles.getChildren().clear();
-                for (int i = 0; i < 20; i++) {
-                    Text text = new Text(titles[i]);
-                    text.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
 
-                    hyperlink = new Hyperlink(urls[i]);
-                    final String link = hyperlink.toString();
-                    hyperlink.setFont(Font.font("Times New Roman", FontWeight.BOLD, 14));
-                    articles.getChildren().add(text);
-                    articles.getChildren().add(hyperlink);
-
-                    hyperlink.setOnAction(new EventHandler<ActionEvent>() {
-
-                        public void handle(ActionEvent t) {
-                            openLink(link);
-                        }
-                    });
-
-                }
+                putChildren();
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -193,22 +183,8 @@ public class ArticlyInterface extends Application implements EventHandler<Action
                 numDays = 30;
                 populate();
                 articles.getChildren().clear();
-                for (int i = 0; i < 20; i++) {
-                    Text text = new Text(titles[i]);
-                    text.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
-                    hyperlink = new Hyperlink(urls[i]);
-                    final String link = hyperlink.toString();
-                    hyperlink.setFont(Font.font("Times New Roman", FontWeight.BOLD, 14));
-                    articles.getChildren().add(text);
-                    articles.getChildren().add(hyperlink);
 
-                    hyperlink.setOnAction(new EventHandler<ActionEvent>() {
-
-                        public void handle(ActionEvent t) {
-                            openLink(link);
-                        }
-                    });
-                }
+                putChildren();
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

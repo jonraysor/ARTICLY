@@ -47,7 +47,7 @@ public class Backend {
 	        // within each "result" we extract the title and print it to the screen
 	        for (int i = 0; i < arr.length(); i++) {
 				String title = arr.getJSONObject(i).getString("title");
-				String dataTitle = (i + 1 + ": title: " + title + "\n");
+				String dataTitle = (i + 1 + ". " + title + "\n");
 				titles[i] =  dataTitle;
 			}
 
