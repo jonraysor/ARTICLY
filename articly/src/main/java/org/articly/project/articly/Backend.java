@@ -17,14 +17,18 @@ public class Backend {
  
 	   public static String getHTML(int numDays) throws Exception {
 		   
-		   	  //int numDays = Backend.getDays();
-		   
-		   	  String urlToRead = MessageFormat.format("https://api.nytimes.com/svc/mostpopular/v2/viewed/{0}.json?api-key=Pxp8OXdQJUtbRA5n3XAN0hCpFhL6qZeb\n", numDays); 
+
+		      String LINK = "https://api.nytimes.com/svc/mostpopular/v2/viewed/{0}.json?api-key=Pxp8OXdQJUtbRA5n3XAN0hCpFhL6qZeb\n";
+		   	  String urlToRead = MessageFormat.format(LINK, numDays);
 		   	  StringBuilder result = new StringBuilder();
-		      URL url = new URL(urlToRead);
+
+		   	  URL url = new URL(urlToRead);
+
 		      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		      conn.setRequestMethod("GET");
+
 		      BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
 		      String line;
 		      while ((line = rd.readLine()) != null) {
 		         result.append(line);
@@ -35,7 +39,7 @@ public class Backend {
 	   
 	   public static String [] getTitles(int numDays) throws JSONException, Exception {
 		   
-		// create JSON object with Backend functions
+			// create JSON object with Backend functions
 			JSONObject obj = new JSONObject(Backend.getHTML(numDays));
 			//String pageName = obj.getString("results");
 			
