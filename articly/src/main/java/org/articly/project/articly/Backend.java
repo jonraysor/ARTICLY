@@ -15,73 +15,96 @@ import java.util.TreeMap;
 
 public class Backend {
 
+    private static String Link;
+
+    public static String getHTML(int numDays,  int type) throws Exception {
+
+        getRequested(type);
+        String urlToRead = MessageFormat.format(Link, numDays);
+        StringBuilder result = new StringBuilder();
+
+        URL url = new URL(urlToRead);
+
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+
+        BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+        String line;
+        while ((line = rd.readLine()) != null) {
+            result.append(line);
+        }
+        rd.close();
+        return result.toString();
+    }
+
+    // fucntion to get type of request
+    // based off of
+    private static String getRequested(int type){
+
+        switch (type) {
+
+            //most viewed
+            case 1:
+                Link = "https://api.nytimes.com/svc/mostpopular/v2/viewed/{0}.json?api-key=Pxp8OXdQJUtbRA5n3XAN0hCpFhL6qZeb\n";
+                return Link;
+
+            // most shared
+            case 2:
+                Link = "https://api.nytimes.com/svc/mostpopular/v2/shared/{0}.json?api-key=Pxp8OXdQJUtbRA5n3XAN0hCpFhL6qZeb\n";
+                return Link;
+
+            // most emailed
+            case 3:
+                Link = "https://api.nytimes.com/svc/mostpopular/v2/emialed/{0}.json?api-key=Pxp8OXdQJUtbRA5n3XAN0hCpFhL6qZeb\n";
+                return Link;
 
 
- 
-	   public static String getHTML(int numDays) throws Exception {
-		   
+        }
+        return Link;
+    }
 
-		      String LINK = "https://api.nytimes.com/svc/mostpopular/v2/viewed/{0}.json?api-key=Pxp8OXdQJUtbRA5n3XAN0hCpFhL6qZeb\n";
-		   	  String urlToRead = MessageFormat.format(LINK, numDays);
-		   	  StringBuilder result = new StringBuilder();
+    public static String [] getTitles(int numDays, int type) throws JSONException, Exception {
 
-		   	  URL url = new URL(urlToRead);
+        // create JSON object with Backend functions
+        JSONObject obj = new JSONObject(Backend.getHTML(numDays, type);
+        //String pageName = obj.getString("results");
 
-		      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		      conn.setRequestMethod("GET");
+        // create JSON array to hold the results
+        JSONArray arr = obj.getJSONArray("results");
 
-		      BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        String [] titles = new String[30];
 
-		      String line;
-		      while ((line = rd.readLine()) != null) {
-		         result.append(line);
-		      }
-		      rd.close();
-		      return result.toString();
-	   }
-	   
-	   public static String [] getTitles(int numDays) throws JSONException, Exception {
-		   
-			// create JSON object with Backend functions
-			JSONObject obj = new JSONObject(Backend.getHTML(numDays));
-			//String pageName = obj.getString("results");
-			
-			// create JSON array to hold the results
-	        JSONArray arr = obj.getJSONArray("results");
+        // within each "result" we extract the title and print it to the screen
+        for (int i = 0; i < arr.length(); i++) {
+            String title = arr.getJSONObject(i).getString("title");
+            String dataTitle = (i + 1 + ". " + title + "\n");
+            titles[i] =  dataTitle;
+        }
 
-	        String [] titles = new String[30];
-	        
-	        // within each "result" we extract the title and print it to the screen
-	        for (int i = 0; i < arr.length(); i++) {
-				String title = arr.getJSONObject(i).getString("title");
-				String dataTitle = (i + 1 + ". " + title + "\n");
-				titles[i] =  dataTitle;
-			}
+        return titles;
 
-	        return titles;
+    }
 
-	   }
+    public static String [] getURL(int numDays, int type) throws JSONException, Exception {
 
-	public static String [] getURL(int numDays) throws JSONException, Exception {
+        // create JSON object with Backend functions
+        JSONObject obj = new JSONObject(Backend.getHTML(numDays, type));
+        //String pageName = obj.getString("results");
 
-		// create JSON object with Backend functions
-		JSONObject obj = new JSONObject(Backend.getHTML(numDays));
-		//String pageName = obj.getString("results");
+        // create JSON array to hold the results
+        JSONArray arr = obj.getJSONArray("results");
 
-		// create JSON array to hold the results
-		JSONArray arr = obj.getJSONArray("results");
+        String [] urls = new String[30];
 
-		String [] urls = new String[30];
+        // within each "result" we extract the title and print it to the screen
+        for (int i = 0; i < arr.length(); i++) {
+            String url = arr.getJSONObject(i).getString("url");
+            urls[i] =  url;
+        }
 
-		// within each "result" we extract the title and print it to the screen
-		for (int i = 0; i < arr.length(); i++) {
-			String url = arr.getJSONObject(i).getString("url");
-			urls[i] =  url;
-		}
+        return urls;
 
-		return urls;
-
-	}
-
+    }
 	   
 }
