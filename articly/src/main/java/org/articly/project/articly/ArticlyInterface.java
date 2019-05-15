@@ -7,34 +7,31 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
+import javafx.scene.text.*;
 import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.Group;
 import javafx.stage.*;
-import java.net.URL;
 import java.net.URI;
 import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 public class ArticlyInterface extends Application implements EventHandler<ActionEvent> {
 
 
     private int numDays;
+    private int type;
     private String[] titles;
     private String[] urls;
+    private String[] dates;
+    private String[] sections;
 
     Text welcome;
     TextFlow articles;
     Button btDaily;
     Button btWeekly;
     Button btMonthly;
+    TextField tfMetrics;
     Image image;
     Hyperlink hyperlink;
     ImageView imageview = new ImageView();
@@ -44,13 +41,15 @@ public class ArticlyInterface extends Application implements EventHandler<Action
         GridPane pane = new GridPane();
         pane.setAlignment(Pos.CENTER);
         pane.setHgap(10);
-        pane.setVgap(5);
+        pane.setVgap(3);
 
-        HBox hbox = new HBox();
-        hbox.setSpacing(20.0);
+        HBox times = new HBox();
+        VBox metrics  = new VBox();
+        times.setSpacing(15.0);
+        metrics.setSpacing(8.0);
 
         Group root = new Group();
-        Scene scene = new Scene(root, 850, 800, Color.SLATEGRAY);
+        Scene scene = new Scene(root, 850, 835, Color.LIGHTGRAY);
 
         btDaily = new Button("Daily ");
         btDaily.setStyle("-fx-font-size: 12pt;");
@@ -59,35 +58,47 @@ public class ArticlyInterface extends Application implements EventHandler<Action
         btMonthly = new Button("Monthly");
         btMonthly.setStyle("-fx-font-size: 12pt;");
 
-        image = new Image(ArticlyInterface.class.getResourceAsStream("./times.jpg"));
+        image = new Image(ArticlyInterface.class.getResourceAsStream("times.jpg"));
         imageview.setFitHeight(150);
         imageview.setFitWidth(825);
         imageview.setImage(image);
 
         welcome = new Text("Welcome to Articly. Enjoy browsing our vast collection of articles from the New York Times");
-        welcome.setFont(Font.font("Times New Roman", FontWeight.BOLD, 20));
+        welcome.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 22));
         welcome.setFill(Color.DARKBLUE);
 
         articles = new TextFlow();
-        articles.setMaxWidth(300.0);
+
+        tfMetrics = new TextField();
+        tfMetrics.setMaxWidth(300.0);
+        tfMetrics.setAlignment(Pos.CENTER);
+        tfMetrics.setFont(Font.font("Times New Roman", FontWeight.BOLD, 20));
+
+        Label metric = new Label("Please Enter Most Viewed, Most Shared, or Most Emailed");
+        metric.setTextFill(Color.DARKBLUE);
+        metric.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 20));
 
         ScrollPane sp = new ScrollPane(articles);
-        sp.setPrefSize(150.0, 500.0);
+        sp.setPrefSize(475.0, 500.0);
         sp.setStyle("-fx-background-color: transparent");
 
-        hbox.getChildren().addAll(btDaily, btWeekly, btMonthly);
-        hbox.setAlignment(Pos.CENTER);
+        times.getChildren().addAll(btDaily, btWeekly, btMonthly);
+        times.setAlignment(Pos.CENTER);
+        metrics.getChildren().addAll(metric, tfMetrics);
+        metrics.setAlignment(Pos.CENTER);
+
         pane.setAlignment(Pos.BOTTOM_CENTER);
         pane.add(imageview, 1, 0);
         pane.add(welcome, 1, 1);
         pane.add(sp, 1, 2);
-        pane.add(hbox, 1, 8, 2, 1);
+        pane.add(metrics, 1, 7, 2, 1);
+        pane.add(times, 1, 8, 2, 1);
 
         btDaily.setOnAction(this);
         btWeekly.setOnAction(this);
         btMonthly.setOnAction(this);
 
-        root.getChildren().addAll(pane);
+        root.getChildren().add(pane);
         primaryStage.setTitle("ARTICLY");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -111,8 +122,10 @@ public class ArticlyInterface extends Application implements EventHandler<Action
     private void populate(){
         try {
 
-                titles = Backend.getTitles(numDays);
-                urls = Backend.getURL(numDays);
+                titles = Backend.getTitles(numDays, type);
+                urls = Backend.getURLs(numDays, type);
+                dates = Backend.getPublishedDates(numDays, type);
+                sections = Backend.getSections(numDays, type);
 
         }
         catch (Exception e) {
@@ -125,72 +138,161 @@ public class ArticlyInterface extends Application implements EventHandler<Action
 
         for (int i = 0; i < 20; i++) {
 
-            Text text = new Text(titles[i]);
-            text.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
-
+            Text separate1 = new Text(System.lineSeparator());
+            Text separate2 = new Text(System.lineSeparator());
+            Text title = new Text(titles[i]);
+            title.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
+            Text date = new Text(dates[i]);
+            date.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
+            Text section = new Text(sections[i]);
+            section.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
             hyperlink = new Hyperlink(urls[i]);
             final String link = hyperlink.toString();
-            hyperlink.setFont(Font.font("Times New Roman", FontWeight.BOLD, 14));
-            articles.getChildren().add(text);
+            hyperlink.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
+            articles.getChildren().add(title);
+            articles.getChildren().add(date);
+            articles.getChildren().add(section);
             articles.getChildren().add(hyperlink);
-
+            articles.getChildren().add(separate1);
+            articles.getChildren().add(separate2);
             hyperlink.setOnAction(new EventHandler<ActionEvent>() {
 
                 public void handle(ActionEvent t) {
                     openLink(link);
                 }
             });
+
         }
 
     }
 
-
     public void handle(ActionEvent event) {
 
-        if (event.getSource() == btDaily) {
-            try {
-                numDays = 1;
-                populate();
-                articles.getChildren().clear();
+            if (tfMetrics.getText().equals("most viewed") || tfMetrics.getText().equals("Most Viewed") || tfMetrics.getText().equals("viewed")) {
 
-                putChildren();
+                if (event.getSource() == btDaily) {
+                    try {
+                        type = 1;
+                        numDays = 1;
+                        populate();
+                        articles.getChildren().clear();
+                        putChildren();
+                    } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+
+                if (event.getSource() == btWeekly) {
+                    try {
+                        type = 1;
+                        numDays = 7;
+                        populate();
+                        articles.getChildren().clear();
+                        putChildren();
+                    } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+
+                if (event.getSource() == btMonthly) {
+                    try {
+                        type = 1;
+                        numDays = 30;
+                        populate();
+                        articles.getChildren().clear();
+                        putChildren();
+                    } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
             }
-            catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+
+        if (tfMetrics.getText().equals("most shared") || tfMetrics.getText().equals("Most Shared") || tfMetrics.getText().equals("shared") ) {
+
+            if (event.getSource() == btDaily) {
+                try {
+                    type = 2;
+                    numDays = 1;
+                    populate();
+                    articles.getChildren().clear();
+                    putChildren();
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+
+            if (event.getSource() == btWeekly) {
+                try {
+                    type = 2;
+                    numDays = 7;
+                    populate();
+                    articles.getChildren().clear();
+                    putChildren();
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+
+            if (event.getSource() == btMonthly) {
+                try {
+                    type = 2;
+                    numDays = 30;
+                    populate();
+                    articles.getChildren().clear();
+                    putChildren();
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         }
 
+        if (tfMetrics.getText().equals("most emailed") || tfMetrics.getText().equals("Most Emailed") || tfMetrics.getText().equals("emailed")) {
 
+            if (event.getSource() == btDaily) {
+                try {
+                    type = 3;
+                    numDays = 1;
+                    populate();
+                    articles.getChildren().clear();
+                    putChildren();
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
 
+            if (event.getSource() == btWeekly) {
+                try {
+                    type = 3;
+                    numDays = 7;
+                    populate();
+                    articles.getChildren().clear();
+                    putChildren();
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
 
-        if (event.getSource() == btWeekly) {
-            try {
-                numDays = 7;
-                populate();
-
-                articles.getChildren().clear();
-
-                putChildren();
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+            if (event.getSource() == btMonthly) {
+                try {
+                    type = 3;
+                    numDays = 30;
+                    populate();
+                    articles.getChildren().clear();
+                    putChildren();
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         }
-
-        if (event.getSource() == btMonthly) {
-            try {
-                numDays = 30;
-                populate();
-                articles.getChildren().clear();
-
-                putChildren();
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-
     }
 
     public static void run(String[] args) {
